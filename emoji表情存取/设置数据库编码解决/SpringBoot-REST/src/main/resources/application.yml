@@ -2,6 +2,7 @@ server:
   port: 8080
 
 # 数据源的配置
+# 如果你使用的mysql驱动（pom依赖）为新版本（或5以上的版本），那么就必须跟上时区信息：serverTimezone=UTC（标准时区，相对我们会慢8小时，所以需要选择上海时区serverTimezone=Asia/Shanghai，但是我没有用到时间，就不改了）
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/springbootdemo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
