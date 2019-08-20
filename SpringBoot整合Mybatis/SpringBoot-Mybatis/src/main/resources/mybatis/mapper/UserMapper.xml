@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hx.insist.demo.dao.UserDao" >
+    <!--自定义返回结果 映射集合-->
+    <resultMap id="BaseResultMap" type="hx.insist.demo.entity.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="userName" property="username" />
+        <result column="passWord" property="password" />
+        <result column="user_sex" property="userSex" javaType="hx.insist.demo.enums.UserSexEnum"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,userName,passWord,user_sex,nick_name
+    </sql>
+
+    <insert id="insertUserSelective" parameterType="hx.insist.demo.entity.User">
+        insert into users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                username,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="userSex!=null">
+                user_sex,
+            </if>
+            <if test="nickName!=null">
+                nick_name,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                #{username},
+            </if>
+            <if test="password!=null">
+                #{password},
+            </if>
+            <if test="userSex!=null">
+                #{userSex},
+            </if>
+            <if test="nickName!=null">
+                #{nickName},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteUserByPrimaryKey" parameterType="long">
+        delete from users
+        where id = #{id}
+    </delete>
+    <select id="getId" resultType="long">
+        select id
+        from users
+        limit 1
+    </select>
+    <update id="updateUserByPrimaryKeySelective" parameterType="hx.insist.demo.entity.User">
+        update users
+        <set>
+            <if test="username!=null">
+                username = #{username},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+            <if test="userSex!=null">
+                user_sex = #{userSex},
+            </if>
+            <if test="nickName!=null">
+                nick_name = #{nickName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List"/>
+        from users
+    </select>
+
+</mapper>
