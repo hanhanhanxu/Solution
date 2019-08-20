@@ -1,0 +1,9 @@
+
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image: # \u7F29\u7565\u56FE
+    width: 60
+    height: 60
+  tracker-list: # tracker\u5730\u5740 \u4F60\u7684\u865A\u62DF\u673Aip+tracker\u7AEF\u53E3
+    - 192.168.1.205:22122
