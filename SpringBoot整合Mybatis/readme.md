@@ -586,6 +586,8 @@ public class Swagger2 {
 
 ## 运行类
 
+**一定要在启动类上添加@MapperScan("dao路径")注解，无论整合任何Mybatis相关（手写，通用mapper，Mybatis-plus）都必须要写扫描dao层接口的注解！！！如果有dao层xml配置文件，还要在application.yml中配置扫描xml文件路径。这是必须的！！！**
+
 DemoApplication.java
 
 ```java
