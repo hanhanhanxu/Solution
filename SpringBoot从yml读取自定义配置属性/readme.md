@@ -7,6 +7,8 @@
 在配置文件application.yml中配置自定义属性，然后可在任意类中采用@Autowried方式读取此属性。
 
 
+>  本文介绍了两种方式，第一种方式是比较复杂的注入，不过比较标准。第二种方式写在最后（文末），直接注入，写法比较简介。
+
 
 
 
@@ -414,5 +416,62 @@ public class testUserController {
     private hhProperties fzprop;
 ```
 
+
+
+
+
+
+# 文末
+
+> 第二种注入方式
+
+例如，在`application.yml`中写了如下属性
+
+```yml
+
+# 数据源配置
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springbootdemo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: hanxu
+
+
+FTP_PORT: 21
+```
+
+在任意一个类中若想要使用这些（自定义）属性，就在该类中注入一个属性，添加`@Value`()注解
+
+即可。（`import org.springframework.beans.factory.annotation.Value;`**依赖不要导错**）
+
+```java
+package hx.insist.demo.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserController {
+
+
+    @Value("${FTP_PORT}")
+    private String port;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @GetMapping("get")
+    public String getPort(){
+        return port;
+    }
+
+    @GetMapping("get2")
+    public String getUsername(){
+        return username;
+    }
+
+}
+```
 
 
