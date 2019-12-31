@@ -22,7 +22,7 @@ import java.util.*;
 
 
 public class hx1 {
-    //遍历map的4种方式
+    //遍历map的3种方式
     @Test
     public void test1(){
         HashMap<Integer,String> map = new HashMap();
@@ -68,7 +68,7 @@ public class hx1 {
         }
 
 
-        //4 通过map.values得到values遍历value
+        //3 通过map.values得到values遍历value
         System.out.println("-----------------------3:values得到Collection集合，集合元素类型为value的类型-------------------------");
 
         System.out.println("3.1:集合遍历");
